@@ -7,9 +7,11 @@ namespace QuizService
     [ServiceContract]
     public interface IUserService
     {
-        [OperationContract]
         [WebGet(UriTemplate = "/register?n={name}&s={surname}&e={email}&p={password}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         NameValue Register(string name, string surname, string email, string password);
+
+        [WebGet(UriTemplate = "/login?e={email}&p={password}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        NameValue Login(string email, string password);
     }//interface
 
     [DataContract]

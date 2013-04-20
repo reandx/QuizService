@@ -33,16 +33,16 @@ namespace QuizService
                 return new NameValue() { Name = "Error : Error connecting to DB." };
 
             if (string.IsNullOrEmpty(email))
-                return new NameValue() { Name = "Error : Email cant be empty" };
+                return new NameValue() { Name = "Error : Email cant be empty." };
 
             if (string.IsNullOrEmpty(name))
-                return new NameValue() { Name = "Error : Name cant be empty" };
+                return new NameValue() { Name = "Error : Name cant be empty." };
 
             if (string.IsNullOrEmpty(surname))
-                return new NameValue() { Name = "Error : Surname cant be empty" };
+                return new NameValue() { Name = "Error : Surname cant be empty." };
 
             if (string.IsNullOrEmpty(password))
-                return new NameValue() { Name = "Error : Password cant be empty" };
+                return new NameValue() { Name = "Error : Password cant be empty." };
 
             if (DB.tabUser.Where(i => i.Email == email).FirstOrDefault() != null)
                 return new NameValue() { Name = "This email is already registered." };
@@ -60,7 +60,22 @@ namespace QuizService
             if (DB.SaveChanges() <= 0)
                 return new NameValue() { Name = "Error saving data." };
 
-            return new NameValue() { Name = "Successfully registered", Value = objEntity.ID };
+            return new NameValue() { Name = "Successfully registered.", Value = objEntity.ID };
+        }//function
+
+        public NameValue Login(string email, string password)
+        {
+            if (DB == null)
+                return new NameValue() { Name = "Error : Error connecting to DB." };
+
+            if (string.IsNullOrEmpty(email))
+                return new NameValue() { Name = "Error : Email cant be empty." };
+
+            if (string.IsNullOrEmpty(password))
+                return new NameValue() { Name = "Error : Password cant be empty." };
+
+            UserEntity objEntity = DB.tabUser.Where(i => i.Email == email && i.Password == password).FirstOrDefault();
+            return objEntity == null ? new NameValue() { Name = "Login error." } : new NameValue() { Name = "Successfully logged in.", Value = objEntity.ID };
         }//function
 
         #endregion
