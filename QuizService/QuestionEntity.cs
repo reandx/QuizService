@@ -27,7 +27,7 @@ namespace QuizService
         public virtual AnswerEntity Answer2 { get; set; }
         public virtual AnswerEntity Answer3 { get; set; }
         public virtual AnswerEntity Answer4 { get; set; }
-        public virtual AnswerEntity AnswerRight { get; set; }
+        public virtual AnswerEntity RightAnswer { get; set; }
         public virtual CategoryEntity Category { get; set; }
     }
 }

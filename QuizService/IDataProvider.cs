@@ -31,5 +31,12 @@ namespace QuizService
         List<Category> GetAllCategory();
 
         #endregion
+
+        #region "Question"
+
+        [WebGet(UriTemplate = "/GetAllQuestionByCategoryID?c={categoryID}", ResponseFormat = WebMessageFormat.Json)]
+        List<Question> GetAllQuestionByCategoryID(int categoryID);
+
+        #endregion
     }//interface
 }//namespace

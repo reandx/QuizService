@@ -298,7 +298,7 @@
           <NavigationProperty Name="Question2" Relationship="QuizModel.FK_tabQuestion_tabAnswer_2" FromRole="tabAnswer" ToRole="tabQuestion" />
           <NavigationProperty Name="Question3" Relationship="QuizModel.FK_tabQuestion_tabAnswer_3" FromRole="tabAnswer" ToRole="tabQuestion" />
           <NavigationProperty Name="Question4" Relationship="QuizModel.FK_tabQuestion_tabAnswer_4" FromRole="tabAnswer" ToRole="tabQuestion" />
-          <NavigationProperty Name="QuestionRight" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabAnswer" ToRole="tabQuestion" />
+          <NavigationProperty Name="RightQuestion" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabAnswer" ToRole="tabQuestion" />
         </EntityType>
         <EntityType Name="QuestionEntity">
           <Key>
@@ -316,7 +316,7 @@
           <NavigationProperty Name="Answer2" Relationship="QuizModel.FK_tabQuestion_tabAnswer_2" FromRole="tabQuestion" ToRole="tabAnswer" />
           <NavigationProperty Name="Answer3" Relationship="QuizModel.FK_tabQuestion_tabAnswer_3" FromRole="tabQuestion" ToRole="tabAnswer" />
           <NavigationProperty Name="Answer4" Relationship="QuizModel.FK_tabQuestion_tabAnswer_4" FromRole="tabQuestion" ToRole="tabAnswer" />
-          <NavigationProperty Name="AnswerRight" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="RightAnswer" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabQuestion" ToRole="tabAnswer" />
           <NavigationProperty Name="Category" Relationship="QuizModel.FK_tabQuestion_tabCategory" FromRole="tabQuestion" ToRole="CategoryEntity" />
         </EntityType>
         <EntityType Name="ScoreEntity">

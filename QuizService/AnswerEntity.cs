@@ -20,7 +20,7 @@ namespace QuizService
             this.Question2 = new HashSet<QuestionEntity>();
             this.Question3 = new HashSet<QuestionEntity>();
             this.Question4 = new HashSet<QuestionEntity>();
-            this.QuestionRight = new HashSet<QuestionEntity>();
+            this.RightQuestion = new HashSet<QuestionEntity>();
         }
     
         public int ID { get; set; }
@@ -30,6 +30,6 @@ namespace QuizService
         public virtual ICollection<QuestionEntity> Question2 { get; set; }
         public virtual ICollection<QuestionEntity> Question3 { get; set; }
         public virtual ICollection<QuestionEntity> Question4 { get; set; }
-        public virtual ICollection<QuestionEntity> QuestionRight { get; set; }
+        public virtual ICollection<QuestionEntity> RightQuestion { get; set; }
     }
 }

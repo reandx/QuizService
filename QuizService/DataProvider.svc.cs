@@ -110,6 +110,29 @@ namespace QuizService
 
         #endregion
 
+        #region "Question"
+
+        public List<Question> GetAllQuestionByCategoryID(int categoryID)
+        {
+            if (DB == null)
+                return null;
+
+            return (from item in DB.tabQuestion
+                    where item.CategoryID == categoryID
+                    select new Question()
+                    {
+                        ID = item.ID,
+                        Name = item.Name,
+                        Answer1 = new Answer() { ID = item.Answer1.ID, Name = item.Answer1.Name },
+                        Answer2 = new Answer() { ID = item.Answer2.ID, Name = item.Answer2.Name },
+                        Answer3 = new Answer() { ID = item.Answer3.ID, Name = item.Answer3.Name },
+                        Answer4 = new Answer() { ID = item.Answer4.ID, Name = item.Answer4.Name },
+                        RightAnswer = new Answer() { ID = item.RightAnswer.ID, Name = item.RightAnswer.Name },
+                    }).ToList();
+        }//function
+
+        #endregion
+
         #endregion
     }//class
 }//namespace
