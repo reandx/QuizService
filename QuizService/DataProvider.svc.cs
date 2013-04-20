@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using QuizService.Objects;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -85,24 +86,26 @@ namespace QuizService
 
         #region "GameType"
 
-        public List<GameTypeEntity> GetAllGameType()
+        public List<GameType> GetAllGameType()
         {
             if (DB == null)
                 return null;
 
-            return DB.tabGameType.ToList();
+            return (from item in DB.tabGameType
+                    select new GameType() { ID = item.ID, Name = item.Name }).ToList();
         }//function
 
         #endregion
 
         #region "Category"
 
-        public List<CategoryEntity> GetAllCategory()
+        public List<Category> GetAllCategory()
         {
             if (DB == null)
                 return null;
 
-            return DB.tabCategory.ToList();
+            return (from item in DB.tabCategory
+                    select new Category() { ID = item.ID, Name = item.Name }).ToList();
         }//function
 
         #endregion

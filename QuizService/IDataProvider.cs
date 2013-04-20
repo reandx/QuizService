@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using QuizService.Objects;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
@@ -20,26 +20,16 @@ namespace QuizService
 
         #region "GameType"
 
-        [WebGet(UriTemplate = "/GetAllGameType", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        List<GameTypeEntity> GetAllGameType();
+        [WebGet(UriTemplate = "/GetAllGameType", ResponseFormat = WebMessageFormat.Json)]
+        List<GameType> GetAllGameType();
 
         #endregion
 
         #region "Category"
 
-        [WebGet(UriTemplate = "/GetAllCategory", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        List<CategoryEntity> GetAllCategory();
+        [WebGet(UriTemplate = "/GetAllCategory", ResponseFormat = WebMessageFormat.Json)]
+        List<Category> GetAllCategory();
 
         #endregion
     }//interface
-
-    [DataContract]
-    public class NameValue
-    {
-        [DataMember]
-        public string Name { get; set; }//property
-
-        [DataMember]
-        public object Value { get; set; }//property
-    }//class
 }//namespace
