@@ -16,6 +16,13 @@ namespace QuizService
             return value1 * value2;
         }//function
 
+        public TestObject GetTestObject(TestObject test)
+        {
+            test.ID++;
+            test.Name = test.Name + "_New";
+            return test;
+        }//function
+
         #endregion
     }//class
 }//namespace
