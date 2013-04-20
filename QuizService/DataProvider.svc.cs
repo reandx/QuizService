@@ -95,6 +95,18 @@ namespace QuizService
 
         #endregion
 
+        #region "Category"
+
+        public List<CategoryEntity> GetAllCategory()
+        {
+            if (DB == null)
+                return null;
+
+            return DB.tabCategory.ToList();
+        }//function
+
+        #endregion
+
         #endregion
     }//class
 }//namespace

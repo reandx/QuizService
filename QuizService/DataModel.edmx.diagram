@@ -7,6 +7,7 @@
       <Diagram DiagramId="a6fb4a949a0a4aa79cbf92e79401f46d" Name="Diagram1">
         <EntityTypeShape EntityType="QuizModel.UserEntity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuizModel.GameTypeEntity" Width="1.5" PointX="8.5714215434023284" PointY="12.790538793797856" />
+        <EntityTypeShape EntityType="QuizModel.CategoryEntity" Width="1.5" PointX="5" PointY="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

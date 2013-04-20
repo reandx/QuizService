@@ -19,10 +19,18 @@ namespace QuizService
         #endregion
 
         #region "GameType"
-        
-        #endregion
+
         [WebGet(UriTemplate = "getallgametype", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         List<GameTypeEntity> GetAllGameType();
+
+        #endregion
+
+        #region "Category"
+
+        [WebGet(UriTemplate = "getallcategory", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        List<CategoryEntity> GetAllCategory();
+
+        #endregion
     }//interface
 
     [DataContract]
