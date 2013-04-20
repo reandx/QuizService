@@ -5,9 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a6fb4a949a0a4aa79cbf92e79401f46d" Name="Diagram1">
-        <EntityTypeShape EntityType="QuizModel.UserEntity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuizModel.GameTypeEntity" Width="1.5" PointX="8.5714215434023284" PointY="12.790538793797856" />
-        <EntityTypeShape EntityType="QuizModel.CategoryEntity" Width="1.5" PointX="5" PointY="1.5" />
+        <EntityTypeShape EntityType="QuizModel.UserEntity" Width="1.5" PointX="2" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.GameTypeEntity" Width="1.5" PointX="2" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.CategoryEntity" Width="1.5" PointX="5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.AnswerEntity" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.QuestionEntity" Width="1.5" PointX="8" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.ScoreEntity" Width="1.5" PointX="2" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabAnswer_1" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabAnswer_2" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabAnswer_3" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabAnswer_4" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" />
+        <AssociationConnector Association="QuizModel.FK_tabQuestion_tabCategory" />
+        <AssociationConnector Association="QuizModel.FK_tabScore_tabCategory" />
+        <AssociationConnector Association="QuizModel.FK_tabScore_tabGameType" />
+        <AssociationConnector Association="QuizModel.FK_tabScore_tabUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

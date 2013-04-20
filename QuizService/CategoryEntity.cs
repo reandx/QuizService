@@ -14,7 +14,16 @@ namespace QuizService
     
     public partial class CategoryEntity
     {
+        public CategoryEntity()
+        {
+            this.Question = new HashSet<QuestionEntity>();
+            this.Score = new HashSet<ScoreEntity>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
+    
+        public virtual ICollection<QuestionEntity> Question { get; set; }
+        public virtual ICollection<ScoreEntity> Score { get; set; }
     }
 }

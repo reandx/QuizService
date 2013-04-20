@@ -28,5 +28,8 @@ namespace QuizService
         public DbSet<UserEntity> tabUser { get; set; }
         public DbSet<GameTypeEntity> tabGameType { get; set; }
         public DbSet<CategoryEntity> tabCategory { get; set; }
+        public DbSet<AnswerEntity> tabAnswer { get; set; }
+        public DbSet<QuestionEntity> tabQuestion { get; set; }
+        public DbSet<ScoreEntity> tabScore { get; set; }
     }
 }

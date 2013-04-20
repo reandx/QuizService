@@ -12,16 +12,17 @@ namespace QuizService
     using System;
     using System.Collections.Generic;
     
-    public partial class GameTypeEntity
+    public partial class ScoreEntity
     {
-        public GameTypeEntity()
-        {
-            this.Score = new HashSet<ScoreEntity>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
+        public int UserID { get; set; }
+        public int GameTypeID { get; set; }
+        public int CategoryID { get; set; }
+        public int Score { get; set; }
+        public System.DateTime DateTime { get; set; }
     
-        public virtual ICollection<ScoreEntity> Score { get; set; }
+        public virtual CategoryEntity Category { get; set; }
+        public virtual GameTypeEntity GameType { get; set; }
+        public virtual UserEntity User { get; set; }
     }
 }

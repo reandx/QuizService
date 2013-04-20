@@ -6,10 +6,56 @@
     <edmx:StorageModels>
     <Schema Namespace="QuizModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="QuizModelStoreContainer">
+          <EntitySet Name="tabAnswer" EntityType="QuizModel.Store.tabAnswer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tabCategory" EntityType="QuizModel.Store.tabCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tabGameType" EntityType="QuizModel.Store.tabGameType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tabQuestion" EntityType="QuizModel.Store.tabQuestion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tabScore" EntityType="QuizModel.Store.tabScore" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tabUser" EntityType="QuizModel.Store.tabUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_1" Association="QuizModel.Store.FK_tabQuestion_tabAnswer_1">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_2" Association="QuizModel.Store.FK_tabQuestion_tabAnswer_2">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_3" Association="QuizModel.Store.FK_tabQuestion_tabAnswer_3">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_4" Association="QuizModel.Store.FK_tabQuestion_tabAnswer_4">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_RightAnswer" Association="QuizModel.Store.FK_tabQuestion_tabAnswer_RightAnswer">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabCategory" Association="QuizModel.Store.FK_tabQuestion_tabCategory">
+            <End Role="tabCategory" EntitySet="tabCategory" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabCategory" Association="QuizModel.Store.FK_tabScore_tabCategory">
+            <End Role="tabCategory" EntitySet="tabCategory" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabGameType" Association="QuizModel.Store.FK_tabScore_tabGameType">
+            <End Role="tabGameType" EntitySet="tabGameType" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabUser" Association="QuizModel.Store.FK_tabScore_tabUser">
+            <End Role="tabUser" EntitySet="tabUser" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tabAnswer">
+          <Key>
+            <PropertyRef Name="intID" />
+          </Key>
+          <Property Name="intID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="strName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
         <EntityType Name="tabCategory">
           <Key>
             <PropertyRef Name="intID" />
@@ -24,6 +70,30 @@
           <Property Name="intID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="strName" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tabQuestion">
+          <Key>
+            <PropertyRef Name="intID" />
+          </Key>
+          <Property Name="intID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="intCategoryID" Type="int" Nullable="false" />
+          <Property Name="strName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="intAnswerID1" Type="int" Nullable="false" />
+          <Property Name="intAnswerID2" Type="int" Nullable="false" />
+          <Property Name="intAnswerID3" Type="int" Nullable="false" />
+          <Property Name="intAnswerID4" Type="int" Nullable="false" />
+          <Property Name="intRightAnswerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tabScore">
+          <Key>
+            <PropertyRef Name="intID" />
+          </Key>
+          <Property Name="intID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="intUserID" Type="int" Nullable="false" />
+          <Property Name="intGameTypeID" Type="int" Nullable="false" />
+          <Property Name="intCategoryID" Type="int" Nullable="false" />
+          <Property Name="intScore" Type="int" Nullable="false" />
+          <Property Name="dtDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tabUser">
           <Key>
             <PropertyRef Name="intID" />
@@ -34,6 +104,114 @@
           <Property Name="strEmail" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="strPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_tabQuestion_tabAnswer_1">
+          <End Role="tabAnswer" Type="QuizModel.Store.tabAnswer" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intAnswerID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_2">
+          <End Role="tabAnswer" Type="QuizModel.Store.tabAnswer" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intAnswerID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_3">
+          <End Role="tabAnswer" Type="QuizModel.Store.tabAnswer" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intAnswerID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_4">
+          <End Role="tabAnswer" Type="QuizModel.Store.tabAnswer" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intAnswerID4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_RightAnswer">
+          <End Role="tabAnswer" Type="QuizModel.Store.tabAnswer" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intRightAnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabCategory">
+          <End Role="tabCategory" Type="QuizModel.Store.tabCategory" Multiplicity="1" />
+          <End Role="tabQuestion" Type="QuizModel.Store.tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabCategory">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="intCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabCategory">
+          <End Role="tabCategory" Type="QuizModel.Store.tabCategory" Multiplicity="1" />
+          <End Role="tabScore" Type="QuizModel.Store.tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabCategory">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="intCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabGameType">
+          <End Role="tabGameType" Type="QuizModel.Store.tabGameType" Multiplicity="1" />
+          <End Role="tabScore" Type="QuizModel.Store.tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabGameType">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="intGameTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabUser">
+          <End Role="tabUser" Type="QuizModel.Store.tabUser" Multiplicity="1" />
+          <End Role="tabScore" Type="QuizModel.Store.tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabUser">
+              <PropertyRef Name="intID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="intUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -42,6 +220,45 @@
           <EntitySet Name="tabUser" EntityType="QuizModel.UserEntity" />
           <EntitySet Name="tabGameType" EntityType="QuizModel.GameTypeEntity" />
           <EntitySet Name="tabCategory" EntityType="QuizModel.CategoryEntity" />
+          <EntitySet Name="tabAnswer" EntityType="QuizModel.AnswerEntity" />
+          <EntitySet Name="tabQuestion" EntityType="QuizModel.QuestionEntity" />
+          <EntitySet Name="tabScore" EntityType="QuizModel.ScoreEntity" />
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_1" Association="QuizModel.FK_tabQuestion_tabAnswer_1">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_2" Association="QuizModel.FK_tabQuestion_tabAnswer_2">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_3" Association="QuizModel.FK_tabQuestion_tabAnswer_3">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_4" Association="QuizModel.FK_tabQuestion_tabAnswer_4">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabAnswer_RightAnswer" Association="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer">
+            <End Role="tabAnswer" EntitySet="tabAnswer" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabQuestion_tabCategory" Association="QuizModel.FK_tabQuestion_tabCategory">
+            <End Role="CategoryEntity" EntitySet="tabCategory" />
+            <End Role="tabQuestion" EntitySet="tabQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabCategory" Association="QuizModel.FK_tabScore_tabCategory">
+            <End Role="CategoryEntity" EntitySet="tabCategory" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabGameType" Association="QuizModel.FK_tabScore_tabGameType">
+            <End Role="GameTypeEntity" EntitySet="tabGameType" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tabScore_tabUser" Association="QuizModel.FK_tabScore_tabUser">
+            <End Role="UserEntity" EntitySet="tabUser" />
+            <End Role="tabScore" EntitySet="tabScore" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserEntity">
           <Key>
@@ -52,6 +269,7 @@
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Score" Relationship="QuizModel.FK_tabScore_tabUser" FromRole="UserEntity" ToRole="tabScore" />
         </EntityType>
         <EntityType Name="GameTypeEntity">
           <Key>
@@ -59,6 +277,7 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Score" Relationship="QuizModel.FK_tabScore_tabGameType" FromRole="GameTypeEntity" ToRole="tabScore" />
         </EntityType>
         <EntityType Name="CategoryEntity">
           <Key>
@@ -66,7 +285,162 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="QuizModel.FK_tabQuestion_tabCategory" FromRole="CategoryEntity" ToRole="tabQuestion" />
+          <NavigationProperty Name="Score" Relationship="QuizModel.FK_tabScore_tabCategory" FromRole="CategoryEntity" ToRole="tabScore" />
         </EntityType>
+        <EntityType Name="AnswerEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question1" Relationship="QuizModel.FK_tabQuestion_tabAnswer_1" FromRole="tabAnswer" ToRole="tabQuestion" />
+          <NavigationProperty Name="Question2" Relationship="QuizModel.FK_tabQuestion_tabAnswer_2" FromRole="tabAnswer" ToRole="tabQuestion" />
+          <NavigationProperty Name="Question3" Relationship="QuizModel.FK_tabQuestion_tabAnswer_3" FromRole="tabAnswer" ToRole="tabQuestion" />
+          <NavigationProperty Name="Question4" Relationship="QuizModel.FK_tabQuestion_tabAnswer_4" FromRole="tabAnswer" ToRole="tabQuestion" />
+          <NavigationProperty Name="QuestionRight" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabAnswer" ToRole="tabQuestion" />
+        </EntityType>
+        <EntityType Name="QuestionEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AnswerID1" Nullable="false" />
+          <Property Type="Int32" Name="AnswerID2" Nullable="false" />
+          <Property Type="Int32" Name="AnswerID3" Nullable="false" />
+          <Property Type="Int32" Name="AnswerID4" Nullable="false" />
+          <Property Type="Int32" Name="RightAnswerID" Nullable="false" />
+          <NavigationProperty Name="Answer1" Relationship="QuizModel.FK_tabQuestion_tabAnswer_1" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="Answer2" Relationship="QuizModel.FK_tabQuestion_tabAnswer_2" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="Answer3" Relationship="QuizModel.FK_tabQuestion_tabAnswer_3" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="Answer4" Relationship="QuizModel.FK_tabQuestion_tabAnswer_4" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="AnswerRight" Relationship="QuizModel.FK_tabQuestion_tabAnswer_RightAnswer" FromRole="tabQuestion" ToRole="tabAnswer" />
+          <NavigationProperty Name="Category" Relationship="QuizModel.FK_tabQuestion_tabCategory" FromRole="tabQuestion" ToRole="CategoryEntity" />
+        </EntityType>
+        <EntityType Name="ScoreEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int32" Name="GameTypeID" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="Int32" Name="Score" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="QuizModel.FK_tabScore_tabCategory" FromRole="tabScore" ToRole="CategoryEntity" />
+          <NavigationProperty Name="GameType" Relationship="QuizModel.FK_tabScore_tabGameType" FromRole="tabScore" ToRole="GameTypeEntity" />
+          <NavigationProperty Name="User" Relationship="QuizModel.FK_tabScore_tabUser" FromRole="tabScore" ToRole="UserEntity" />
+        </EntityType>
+        <Association Name="FK_tabQuestion_tabAnswer_1">
+          <End Type="QuizModel.AnswerEntity" Role="tabAnswer" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="AnswerID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_2">
+          <End Type="QuizModel.AnswerEntity" Role="tabAnswer" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="AnswerID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_3">
+          <End Type="QuizModel.AnswerEntity" Role="tabAnswer" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="AnswerID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_4">
+          <End Type="QuizModel.AnswerEntity" Role="tabAnswer" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="AnswerID4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabAnswer_RightAnswer">
+          <End Type="QuizModel.AnswerEntity" Role="tabAnswer" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tabAnswer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="RightAnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabQuestion_tabCategory">
+          <End Type="QuizModel.CategoryEntity" Role="CategoryEntity" Multiplicity="1" />
+          <End Type="QuizModel.QuestionEntity" Role="tabQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryEntity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabQuestion">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabCategory">
+          <End Type="QuizModel.CategoryEntity" Role="CategoryEntity" Multiplicity="1" />
+          <End Type="QuizModel.ScoreEntity" Role="tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryEntity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabGameType">
+          <End Type="QuizModel.GameTypeEntity" Role="GameTypeEntity" Multiplicity="1" />
+          <End Type="QuizModel.ScoreEntity" Role="tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTypeEntity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="GameTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tabScore_tabUser">
+          <End Type="QuizModel.UserEntity" Role="UserEntity" Multiplicity="1" />
+          <End Type="QuizModel.ScoreEntity" Role="tabScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserEntity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tabScore">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -96,6 +470,40 @@
             <EntityTypeMapping TypeName="QuizModel.CategoryEntity">
               <MappingFragment StoreEntitySet="tabCategory">
                 <ScalarProperty Name="Name" ColumnName="strName" />
+                <ScalarProperty Name="ID" ColumnName="intID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tabAnswer">
+            <EntityTypeMapping TypeName="QuizModel.AnswerEntity">
+              <MappingFragment StoreEntitySet="tabAnswer">
+                <ScalarProperty Name="Name" ColumnName="strName" />
+                <ScalarProperty Name="ID" ColumnName="intID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tabQuestion">
+            <EntityTypeMapping TypeName="QuizModel.QuestionEntity">
+              <MappingFragment StoreEntitySet="tabQuestion">
+                <ScalarProperty Name="RightAnswerID" ColumnName="intRightAnswerID" />
+                <ScalarProperty Name="AnswerID4" ColumnName="intAnswerID4" />
+                <ScalarProperty Name="AnswerID3" ColumnName="intAnswerID3" />
+                <ScalarProperty Name="AnswerID2" ColumnName="intAnswerID2" />
+                <ScalarProperty Name="AnswerID1" ColumnName="intAnswerID1" />
+                <ScalarProperty Name="Name" ColumnName="strName" />
+                <ScalarProperty Name="CategoryID" ColumnName="intCategoryID" />
+                <ScalarProperty Name="ID" ColumnName="intID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tabScore">
+            <EntityTypeMapping TypeName="QuizModel.ScoreEntity">
+              <MappingFragment StoreEntitySet="tabScore">
+                <ScalarProperty Name="DateTime" ColumnName="dtDateTime" />
+                <ScalarProperty Name="Score" ColumnName="intScore" />
+                <ScalarProperty Name="CategoryID" ColumnName="intCategoryID" />
+                <ScalarProperty Name="GameTypeID" ColumnName="intGameTypeID" />
+                <ScalarProperty Name="UserID" ColumnName="intUserID" />
                 <ScalarProperty Name="ID" ColumnName="intID" />
               </MappingFragment>
             </EntityTypeMapping>
