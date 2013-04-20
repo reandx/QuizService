@@ -1,9 +1,10 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace QuizService
 {
-    public class UserService : IUserService
+    public class DataProvider : IDataProvider
     {
         #region "Constants"
 
@@ -19,13 +20,15 @@ namespace QuizService
             {
                 if (HttpContext.Current.Items[EntityKey] == null)
                     HttpContext.Current.Items[EntityKey] = new QuizEntities();
-                return (QuizEntities)HttpContext.Current.Items[EntityKey];
+                return HttpContext.Current.Items[EntityKey] as QuizEntities;
             }//get
         }//property
 
         #endregion
 
         #region "Methods"
+
+        #region "User"
 
         public NameValue Register(string name, string surname, string email, string password)
         {
@@ -77,6 +80,20 @@ namespace QuizService
             UserEntity objEntity = DB.tabUser.Where(i => i.Email == email && i.Password == password).FirstOrDefault();
             return objEntity == null ? new NameValue() { Name = "Login error." } : new NameValue() { Name = "Successfully logged in.", Value = objEntity.ID };
         }//function
+
+        #endregion
+
+        #region "GameType"
+
+        public List<GameTypeEntity> GetAllGameType()
+        {
+            if (DB == null)
+                return null;
+
+            return DB.tabGameType.ToList();
+        }//function
+
+        #endregion
 
         #endregion
     }//class

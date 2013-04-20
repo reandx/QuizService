@@ -26,5 +26,6 @@ namespace QuizService
         }
     
         public DbSet<UserEntity> tabUser { get; set; }
+        public DbSet<GameTypeEntity> tabGameType { get; set; }
     }
 }

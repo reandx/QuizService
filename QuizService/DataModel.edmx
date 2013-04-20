@@ -6,8 +6,16 @@
     <edmx:StorageModels>
     <Schema Namespace="QuizModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="QuizModelStoreContainer">
+          <EntitySet Name="tabGameType" EntityType="QuizModel.Store.tabGameType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tabUser" EntityType="QuizModel.Store.tabUser" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="tabGameType">
+          <Key>
+            <PropertyRef Name="intID" />
+          </Key>
+          <Property Name="intID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="strName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tabUser">
           <Key>
             <PropertyRef Name="intID" />
@@ -24,6 +32,7 @@
       <Schema Namespace="QuizModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuizEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="tabUser" EntityType="QuizModel.UserEntity" />
+          <EntitySet Name="tabGameType" EntityType="QuizModel.GameTypeEntity" />
         </EntityContainer>
         <EntityType Name="UserEntity">
           <Key>
@@ -34,6 +43,13 @@
           <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GameTypeEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -49,6 +65,14 @@
                 <ScalarProperty Name="Name" ColumnName="strName" />
                 <ScalarProperty Name="Surname" ColumnName="strSurname" />
                 <ScalarProperty Name="Password" ColumnName="strPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tabGameType">
+            <EntityTypeMapping TypeName="QuizModel.GameTypeEntity">
+              <MappingFragment StoreEntitySet="tabGameType">
+                <ScalarProperty Name="Name" ColumnName="strName" />
+                <ScalarProperty Name="ID" ColumnName="intID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
