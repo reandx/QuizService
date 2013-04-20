@@ -1,4 +1,5 @@
 ﻿using QuizService.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -129,6 +130,30 @@ namespace QuizService
                         Answer4 = new Answer() { ID = item.Answer4.ID, Name = item.Answer4.Name },
                         RightAnswer = new Answer() { ID = item.RightAnswer.ID, Name = item.RightAnswer.Name },
                     }).ToList();
+        }//function
+
+        #endregion
+
+        #region "Score"
+
+        public NameValue PostScore(int userID, int gameTypeID, int categoryID, int score)
+        {
+            if (DB == null)
+                return new NameValue() { Name = "Error : Error connecting to DB." };
+
+            DB.tabScore.Add(new ScoreEntity()
+            {
+                UserID = userID,
+                GameTypeID = gameTypeID,
+                CategoryID = categoryID,
+                Score = score,
+                DateTime = DateTime.Now
+            });
+
+            if (DB.SaveChanges() <= 0)
+                return new NameValue() { Name = "Error saving data." };
+
+            return new NameValue() { Name = "Successfully saved score." };
         }//function
 
         #endregion
