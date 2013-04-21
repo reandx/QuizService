@@ -21,21 +21,21 @@ namespace QuizService
         #region "GameType"
 
         [WebGet(UriTemplate = "/GetAllGameType", ResponseFormat = WebMessageFormat.Json)]
-        List<GameType> GetAllGameType();
+        List<GameTypeObject> GetAllGameType();
 
         #endregion
 
         #region "Category"
 
         [WebGet(UriTemplate = "/GetAllCategory", ResponseFormat = WebMessageFormat.Json)]
-        List<Category> GetAllCategory();
+        List<CategoryObject> GetAllCategory();
 
         #endregion
 
         #region "Question"
 
         [WebGet(UriTemplate = "/GetAllQuestionByCategoryID?c={categoryID}", ResponseFormat = WebMessageFormat.Json)]
-        List<Question> GetAllQuestionByCategoryID(int categoryID);
+        List<QuestionObject> GetAllQuestionByCategoryID(int categoryID);
 
         #endregion
 

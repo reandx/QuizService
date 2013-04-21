@@ -87,40 +87,40 @@ namespace QuizService
 
         #region "GameType"
 
-        public List<GameType> GetAllGameType()
+        public List<GameTypeObject> GetAllGameType()
         {
             if (DB == null)
                 return null;
 
             return (from item in DB.tabGameType
-                    select new GameType() { ID = item.ID, Name = item.Name }).ToList();
+                    select new GameTypeObject() { ID = item.ID, Name = item.Name }).ToList();
         }//function
 
         #endregion
 
         #region "Category"
 
-        public List<Category> GetAllCategory()
+        public List<CategoryObject> GetAllCategory()
         {
             if (DB == null)
                 return null;
 
             return (from item in DB.tabCategory
-                    select new Category() { ID = item.ID, Name = item.Name }).ToList();
+                    select new CategoryObject() { ID = item.ID, Name = item.Name }).ToList();
         }//function
 
         #endregion
 
         #region "Question"
 
-        public List<Question> GetAllQuestionByCategoryID(int categoryID)
+        public List<QuestionObject> GetAllQuestionByCategoryID(int categoryID)
         {
             if (DB == null)
                 return null;
 
             return (from item in DB.tabQuestion
                     where item.CategoryID == categoryID
-                    select new Question()
+                    select new QuestionObject()
                     {
                         ID = item.ID,
                         Name = item.Name,

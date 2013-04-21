@@ -1,7 +1,7 @@
 ﻿
 namespace QuizService.Objects
 {
-    public class Question
+    public class QuestionObject
     {
         public int ID { get; set; }//property
         public string Name { get; set; }//property
