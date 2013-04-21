@@ -138,6 +138,18 @@ namespace QuizService
 
         public NameValue PostScore(int userID, int gameTypeID, int categoryID, int score)
         {
+            if (userID <= 0)
+                return new NameValue() { Name = "Error : UserID cannot be null." };
+
+            if (gameTypeID <= 0)
+                return new NameValue() { Name = "Error : GameTypeID cannot be null." };
+
+            if (categoryID <= 0)
+                return new NameValue() { Name = "Error : CategoryID cannot be null." };
+
+            if (score < 0)
+                return new NameValue() { Name = "Error : Score cannot be null." };
+
             if (DB == null)
                 return new NameValue() { Name = "Error : Error connecting to DB." };
 
