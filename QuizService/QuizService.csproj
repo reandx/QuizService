@@ -99,6 +99,7 @@
     <Compile Include="IDataProvider.cs" />
     <Compile Include="Objects\Answer.cs" />
     <Compile Include="Objects\Category.cs" />
+    <Compile Include="Objects\ScoreObject.cs" />
     <Compile Include="Objects\GameType.cs" />
     <Compile Include="Objects\NameValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

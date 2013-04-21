@@ -44,6 +44,9 @@ namespace QuizService
         [WebGet(UriTemplate = "/PostScore?u={userID}&g={gameTypeID}&c={categoryID}&s={score}", ResponseFormat = WebMessageFormat.Json)]
         NameValue PostScore(int userID, int gameTypeID, int categoryID, int score);
 
+        [WebGet(UriTemplate = "/GetScore?u={userID}&g={gameTypeID}&c={categoryID}", ResponseFormat = WebMessageFormat.Json)]
+        List<ScoreObject> GetScore(int userID, int gameTypeID, int categoryID);
+
         #endregion
     }//interface
 }//namespace

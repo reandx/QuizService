@@ -168,6 +168,26 @@ namespace QuizService
             return new NameValue() { Name = "Successfully saved score." };
         }//function
 
+        public List<ScoreObject> GetScore(int userID, int gameTypeID, int categoryID)
+        {
+            if (DB == null)
+                return null;
+
+            return (from item in DB.tabScore where 
+                    (userID > 0 ? item.UserID == userID : true) &&
+                    (gameTypeID > 0 ? item.GameTypeID == gameTypeID : true) &&
+                    (categoryID > 0 ? item.CategoryID == categoryID : true)
+                    select new ScoreObject()
+                    {
+                        ID = item.ID,
+                        UserID = item.UserID,
+                        CategoryID = item.CategoryID,
+                        GameTypeID = item.GameTypeID,
+                        DateTime = item.DateTime,
+                        Score = item.Score
+                    }).ToList();
+        }//function
+
         #endregion
 
         #endregion
